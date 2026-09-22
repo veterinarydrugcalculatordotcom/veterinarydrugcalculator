@@ -1,0 +1,50 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/calculators/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/page.js"
+    ],
+    "/calculators/mg-kg-calculator/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/mg-kg-calculator/page.js"
+    ],
+    "/calculators/mg-to-ml-calculator/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/mg-to-ml-calculator/page.js"
+    ],
+    "/calculators/veterinary-fluid-calculator/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/veterinary-fluid-calculator/page.js"
+    ],
+    "/calculators/veterinary-cri-calculator/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/veterinary-cri-calculator/page.js"
+    ],
+    "/calculators/veterinary-unit-converter/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/veterinary-unit-converter/page.js"
+    ],
+    "/drug-reference/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/drug-reference/page.js"
+    ]
+  }
+}

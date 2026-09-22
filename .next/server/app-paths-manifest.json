@@ -1,0 +1,7 @@
+{
+  "/page": "app/page.js",
+  "/calculators/page": "app/calculators/page.js",
+  "/calculators/mg-kg-calculator/page": "app/calculators/mg-kg-calculator/page.js",
+  "/calculators/veterinary-unit-converter/page": "app/calculators/veterinary-unit-converter/page.js",
+  "/drug-reference/page": "app/drug-reference/page.js"
+}
