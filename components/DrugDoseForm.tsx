@@ -36,7 +36,9 @@ export default function DrugDoseForm({ drug, doses }: Props) {
 
   const referenceEntry = useMemo(() => {
     if (!species) return undefined;
-    return doses.find((d) => d.species === species && (!route || d.route === route) && d.verified);
+    return doses.find(
+      (d) => d.species === species && (!route || d.route === route) && d.verified
+    );
   }, [doses, species, route]);
 
   if (!availableSpecies.length) {
@@ -52,8 +54,14 @@ export default function DrugDoseForm({ drug, doses }: Props) {
     setError(null);
     setResult(null);
 
-    if (!species) { setError('Select a species.'); return; }
-    if (!route) { setError('Select a verified route.'); return; }
+    if (!species) {
+      setError('Select a species.');
+      return;
+    }
+    if (!route) {
+      setError('Select a verified route.');
+      return;
+    }
     if (!referenceEntry) {
       setError('No verified reference dose is available for this species and route.');
       return;
@@ -63,9 +71,18 @@ export default function DrugDoseForm({ drug, doses }: Props) {
     const d = Number(doseRate);
     const c = Number(concentration);
 
-    if (!Number.isFinite(w) || w <= 0) { setError('Enter a valid positive weight.'); return; }
-    if (!Number.isFinite(d) || d <= 0) { setError('Enter a valid positive dose.'); return; }
-    if (!Number.isFinite(c) || c <= 0) { setError('Enter a valid positive concentration.'); return; }
+    if (!Number.isFinite(w) || w <= 0) {
+      setError('Enter a valid positive weight.');
+      return;
+    }
+    if (!Number.isFinite(d) || d <= 0) {
+      setError('Enter a valid positive dose.');
+      return;
+    }
+    if (!Number.isFinite(c) || c <= 0) {
+      setError('Enter a valid positive concentration.');
+      return;
+    }
 
     const out = calculateDose({
       weight: w,
@@ -76,7 +93,10 @@ export default function DrugDoseForm({ drug, doses }: Props) {
       concentrationUnit: concUnit,
     });
 
-    if ('error' in out) { setError(out.error); return; }
+    if ('error' in out) {
+      setError(out.error);
+      return;
+    }
     setResult(out);
   }
 
@@ -96,10 +116,17 @@ export default function DrugDoseForm({ drug, doses }: Props) {
           <select
             required
             value={species}
-            onChange={(e) => { setSpecies(e.target.value as Species); setRoute(''); }}
+            onChange={(e) => {
+              setSpecies(e.target.value as Species);
+              setRoute('');
+            }}
             className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2"
           >
-            {availableSpecies.map((s) => (<option key={s} value={s}>{s}</option>))}
+            {availableSpecies.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
           </select>
         </label>
 
@@ -111,8 +138,12 @@ export default function DrugDoseForm({ drug, doses }: Props) {
             onChange={(e) => setRoute(e.target.value as Route)}
             className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2"
           >
-            <option value="">Select…</option>
-            {routes.map((r) => (<option key={r} value={r}>{r}</option>))}
+            <option value="">Select</option>
+            {routes.map((r) => (
+              <option key={r} value={r}>
+                {r}
+              </option>
+            ))}
           </select>
         </label>
 
@@ -143,7 +174,7 @@ export default function DrugDoseForm({ drug, doses }: Props) {
           <span className="text-sm font-medium text-slate-800">
             Dose rate (mg/kg)
             {referenceEntry
-              ? ` · reference ${referenceEntry.doseMin}–${referenceEntry.doseMax} ${referenceEntry.doseUnit}/kg`
+              ? ` (reference ${referenceEntry.doseMin} to ${referenceEntry.doseMax} ${referenceEntry.doseUnit}/kg)`
               : ''}
           </span>
           <input
@@ -169,7 +200,9 @@ export default function DrugDoseForm({ drug, doses }: Props) {
             />
             <select
               value={concUnit}
-              onChange={(e) => setConcUnit(e.target.value as any)}
+              onChange={(e) =>
+                setConcUnit(e.target.value as 'mg/mL' | 'mcg/mL' | 'g/mL')
+              }
               className="rounded-r-md border border-l-0 border-slate-300 px-2 py-2 bg-slate-50"
               aria-label="Concentration unit"
             >
@@ -198,7 +231,10 @@ export default function DrugDoseForm({ drug, doses }: Props) {
       </div>
 
       {error && (
-        <p role="alert" className="mt-3 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
+        <p
+          role="alert"
+          className="mt-3 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800"
+        >
           {error}
         </p>
       )}
@@ -209,28 +245,39 @@ export default function DrugDoseForm({ drug, doses }: Props) {
           <dl className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             <div>
               <dt className="text-slate-600">Weight</dt>
-              <dd className="font-medium text-slate-900">{formatNumber(result.weightKg)} kg</dd>
+              <dd className="font-medium text-slate-900">
+                {formatNumber(result.weightKg)} kg
+              </dd>
             </div>
             <div>
               <dt className="text-slate-600">Total dose</dt>
-              <dd className="font-medium text-slate-900">{formatNumber(result.totalMg)} mg</dd>
+              <dd className="font-medium text-slate-900">
+                {formatNumber(result.totalMg)} mg
+              </dd>
             </div>
             <div>
               <dt className="text-slate-600">Concentration</dt>
-              <dd className="font-medium text-slate-900">{formatNumber(result.concentrationMgPerMl)} mg/mL</dd>
+              <dd className="font-medium text-slate-900">
+                {formatNumber(result.concentrationMgPerMl)} mg/mL
+              </dd>
             </div>
             <div>
               <dt className="text-slate-600">Calculated volume</dt>
               <dd className="font-medium text-slate-900">
-                {result.volumeMl == null ? '—' : `${formatNumber(result.volumeMl)} mL`}
+                {result.volumeMl != null
+                  ? `${formatNumber(result.volumeMl)} mL`
+                  : 'Enter a positive concentration to compute volume'}
               </dd>
             </div>
           </dl>
           <p className="mt-3 text-xs text-slate-600">
-            Calculated volume based on the entered weight, dose rate and concentration. This is a mathematical
-            result — it does not determine whether the medication, dose or route is clinically appropriate.
+            Calculated volume based on the entered weight, dose rate and concentration.
+            This is a mathematical result and does not determine whether the medication,
+            dose or route is clinically appropriate.
           </p>
-          <div className="mt-3"><SafetyNotice /></div>
+          <div className="mt-3">
+            <SafetyNotice />
+          </div>
           {referenceEntry && (
             <div className="mt-3">
               <ReferenceBox references={[referenceEntry.reference]} />

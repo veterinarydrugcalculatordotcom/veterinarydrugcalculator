@@ -2,14 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light; }
-
-html { scroll-behavior: smooth; }
-
-:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
-  border-radius: 4px;
+:root {
+  color-scheme: light;
 }
 
-input, select, textarea, button { font: inherit; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+:focus-visible {
+  outline: 2px solid #0f8a8b;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+/* Modern bold sans-serif headings with tight tracking */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+/* Kill any leftover serif utility references site-wide */
+.font-serif {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: -0.025em !important;
+}

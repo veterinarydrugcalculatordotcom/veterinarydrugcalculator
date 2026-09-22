@@ -11,9 +11,9 @@ import { buildMetadata } from '@/lib/seo';
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return DRUGS
-    .filter((d) => d.indexable && d.reviewStatus === 'verified' && d.references.length > 0)
-    .map((d) => ({ slug: d.slug }));
+  return DRUGS.filter(
+    (d) => d.indexable && d.reviewStatus === 'verified' && d.references.length > 0
+  ).map((d) => ({ slug: d.slug }));
 }
 
 export async function generateMetadata({
@@ -36,7 +36,12 @@ export async function generateMetadata({
 export default function DrugPage({ params }: { params: { slug: string } }) {
   const drug = DRUGS.find((d) => d.slug === params.slug);
 
-  if (!drug || !drug.indexable || drug.reviewStatus !== 'verified' || drug.references.length === 0) {
+  if (
+    !drug ||
+    !drug.indexable ||
+    drug.reviewStatus !== 'verified' ||
+    drug.references.length === 0
+  ) {
     notFound();
   }
 
@@ -44,11 +49,13 @@ export default function DrugPage({ params }: { params: { slug: string } }) {
 
   return (
     <article>
-      <Breadcrumbs items={[
-        { name: 'Home', href: '/' },
-        { name: 'Drug reference', href: '/drug-reference/' },
-        { name: drug.genericName, href: `/drugs/${drug.slug}/` },
-      ]} />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', href: '/' },
+          { name: 'Drug reference', href: '/drug-reference/' },
+          { name: drug.genericName, href: `/drugs/${drug.slug}/` },
+        ]}
+      />
 
       <header className="mt-4">
         <h1 className="text-3xl font-bold">
@@ -56,10 +63,13 @@ export default function DrugPage({ params }: { params: { slug: string } }) {
         </h1>
         <p className="mt-2 text-slate-700 max-w-3xl">
           Educational dose calculator and reference information for {drug.genericName}.
-          This page does not provide diagnosis or treatment and does not replace veterinary judgment.
+          This page does not provide diagnosis or treatment and does not replace
+          veterinary judgment.
         </p>
         {drug.reviewDate && (
-          <p className="mt-2 text-xs text-slate-500">Last reviewed: {drug.reviewDate}</p>
+          <p className="mt-2 text-xs text-slate-500">
+            Last reviewed: {drug.reviewDate}
+          </p>
         )}
       </header>
 
@@ -79,23 +89,26 @@ export default function DrugPage({ params }: { params: { slug: string } }) {
 
       <section className="mt-8">
         <h2 className="text-xl font-semibold">Species with verified entries</h2>
-        {drug.species.length ? (
+        {drug.species.length > 0 ? (
           <ul className="mt-2 list-disc pl-6 text-slate-700">
-            {drug.species.map((s) => (
-              <li key={s}>
-                {s} — {getVerifiedDosesFor(drug.slug, s).length} verified dose entr
-                {getVerifiedDosesFor(drug.slug, s).length === 1 ? 'y' : 'ies'}
-              </li>
-            ))}
+            {drug.species.map((s) => {
+              const count = getVerifiedDosesFor(drug.slug, s).length;
+              return (
+                <li key={s}>
+                  {s} with {count} verified dose {count === 1 ? 'entry' : 'entries'}
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <p className="mt-2 text-slate-700">
-            This information is not currently available in our verified reference database.
+            This information is not currently available in our verified reference
+            database.
           </p>
         )}
       </section>
 
-      {doses.length ? (
+      {doses.length > 0 && (
         <section className="mt-8">
           <h2 className="text-xl font-semibold">Verified dose entries</h2>
           <div className="mt-2 overflow-x-auto">
@@ -115,9 +128,11 @@ export default function DrugPage({ params }: { params: { slug: string } }) {
                     <td className="px-3 py-2">{d.species}</td>
                     <td className="px-3 py-2">{d.route}</td>
                     <td className="px-3 py-2">
-                      {d.doseMin}–{d.doseMax} {d.doseUnit}/kg
+                      {d.doseMin} to {d.doseMax} {d.doseUnit}/kg
                     </td>
-                    <td className="px-3 py-2">{d.frequency ?? '—'}</td>
+                    <td className="px-3 py-2">
+                      {d.frequency || 'Not specified in source'}
+                    </td>
                     <td className="px-3 py-2">
                       <a
                         className="text-blue-700 underline break-all"
@@ -134,7 +149,7 @@ export default function DrugPage({ params }: { params: { slug: string } }) {
             </table>
           </div>
         </section>
-      ) : null}
+      )}
 
       <section className="mt-8">
         <h2 className="text-xl font-semibold">References</h2>
@@ -150,10 +165,26 @@ export default function DrugPage({ params }: { params: { slug: string } }) {
       <section className="mt-8">
         <h2 className="text-xl font-semibold">Related</h2>
         <ul className="mt-2 list-disc pl-6 text-slate-700">
-          <li><Link className="text-blue-700" href="/calculators/veterinary-drug-calculator/">Veterinary drug calculator</Link></li>
-          <li><Link className="text-blue-700" href="/calculators/dog-drug-calculator/">Dog drug calculator</Link></li>
-          <li><Link className="text-blue-700" href="/calculators/cat-drug-calculator/">Cat drug calculator</Link></li>
-          <li><Link className="text-blue-700" href="/calculators/mg-to-ml-calculator/">mg to mL calculator</Link></li>
+          <li>
+            <Link className="text-blue-700" href="/calculators/veterinary-drug-calculator/">
+              Veterinary drug calculator
+            </Link>
+          </li>
+          <li>
+            <Link className="text-blue-700" href="/calculators/dog-drug-calculator/">
+              Dog drug calculator
+            </Link>
+          </li>
+          <li>
+            <Link className="text-blue-700" href="/calculators/cat-drug-calculator/">
+              Cat drug calculator
+            </Link>
+          </li>
+          <li>
+            <Link className="text-blue-700" href="/calculators/mg-to-ml-calculator/">
+              mg to mL calculator
+            </Link>
+          </li>
         </ul>
       </section>
     </article>

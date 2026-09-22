@@ -11,20 +11,70 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
+    ],
+    "/drug-reference/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/drug-reference/page.js"
+    ],
     "/calculators/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/calculators/page.js"
+    ],
+    "/calculators/veterinary-drug-calculator/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/veterinary-drug-calculator/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/about/page.js"
+    ],
+    "/references/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/references/page.js"
+    ],
+    "/learn/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/learn/page.js"
+    ],
+    "/learn/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/learn/[slug]/page.js"
+    ],
+    "/calculators/veterinary-unit-converter/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/veterinary-unit-converter/page.js"
+    ],
+    "/calculators/mg-to-ml-calculator/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/mg-to-ml-calculator/page.js"
     ],
     "/calculators/mg-kg-calculator/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/calculators/mg-kg-calculator/page.js"
     ],
-    "/calculators/mg-to-ml-calculator/page": [
+    "/contact/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/calculators/mg-to-ml-calculator/page.js"
+      "static/chunks/app/contact/page.js"
     ],
     "/calculators/veterinary-fluid-calculator/page": [
       "static/chunks/webpack.js",
@@ -36,15 +86,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/calculators/veterinary-cri-calculator/page.js"
     ],
-    "/calculators/veterinary-unit-converter/page": [
+    "/calculators/cat-drug-calculator/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/calculators/veterinary-unit-converter/page.js"
+      "static/chunks/app/calculators/cat-drug-calculator/page.js"
     ],
-    "/drug-reference/page": [
+    "/calculators/dog-drug-calculator/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/drug-reference/page.js"
+      "static/chunks/app/calculators/dog-drug-calculator/page.js"
+    ],
+    "/calculators/veterinary-drug-calculator/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/veterinary-drug-calculator/layout.js"
+    ],
+    "/calculators/dog-drug-calculator/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/dog-drug-calculator/layout.js"
+    ],
+    "/calculators/mg-to-ml-calculator/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/calculators/mg-to-ml-calculator/layout.js"
     ]
   }
 }
