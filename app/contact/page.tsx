@@ -25,68 +25,25 @@ export default function Page() {
             Contact
           </h1>
           <p className="mt-5 text-lg text-ink-700 leading-relaxed">
-            Use this form to report errors, broken source links, corrections or technical
-            issues. We do not provide veterinary advice by email and cannot answer
-            individual clinical questions.
+            For corrections, broken source links, or technical issues, please reach out to us
+            by email.
           </p>
 
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            className="mt-8 grid gap-4 rounded-2xl border border-ink-200 bg-white p-6 shadow-card"
-          >
-            <input type="hidden" name="form-name" value="contact" />
-
-            {/* Honeypot field: bots fill it, humans do not see it */}
-            <p className="hidden">
-              <label>
-                Do not fill this out if you are human: <input name="bot-field" />
-              </label>
+          <div className="mt-8 rounded-2xl border border-ink-200 bg-white p-6 shadow-card">
+            <p className="text-sm font-medium text-ink-700">Email us at:</p>
+            <p className="mt-2 text-xl font-semibold text-brand-700">
+              info@veterinarydrugcalculator.com
             </p>
-
-            <label className="block">
-              <span className="text-sm font-medium text-ink-800">Your email</span>
-              <input
-                type="email"
-                name="email"
-                required
-                className="mt-1.5 w-full rounded-lg border border-ink-200 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none"
-              />
-            </label>
-
-            <label className="block">
-              <span className="text-sm font-medium text-ink-800">Subject</span>
-              <select
-                name="topic"
-                className="mt-1.5 w-full rounded-lg border border-ink-200 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none"
-              >
-                <option>Error report</option>
-                <option>Broken source link</option>
-                <option>Reference correction</option>
-                <option>Technical problem</option>
-                <option>Content feedback</option>
-              </select>
-            </label>
-
-            <label className="block">
-              <span className="text-sm font-medium text-ink-800">Message</span>
-              <textarea
-                name="message"
-                required
-                rows={6}
-                className="mt-1.5 w-full rounded-lg border border-ink-200 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none"
-              />
-            </label>
-
-            <button className="justify-self-start rounded-lg bg-brand-700 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-brand-800 transition">
-              Send message
-            </button>
-
-            <p className="text-xs text-ink-500">
-              Please do not include confidential clinical information.
+            <p className="mt-4 text-xs text-ink-500">
+              We do not provide veterinary advice by email and cannot answer individual
+              clinical questions. Please do not include confidential clinical information.
             </p>
-          </form>
+          </div>
+
+          <p className="mt-6 text-sm text-ink-600">
+            We aim to respond to legitimate corrections and technical reports within a few
+            business days.
+          </p>
         </article>
 
         <aside className="lg:sticky lg:top-24 h-fit space-y-6">

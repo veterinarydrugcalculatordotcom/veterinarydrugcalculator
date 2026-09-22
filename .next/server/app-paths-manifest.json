@@ -2,7 +2,6 @@
   "/about/page": "app/about/page.js",
   "/contact/page": "app/contact/page.js",
   "/page": "app/page.js",
-  "/calculators/page": "app/calculators/page.js",
   "/learn/[slug]/page": "app/learn/[slug]/page.js",
   "/calculators/dog-drug-calculator/page": "app/calculators/dog-drug-calculator/page.js"
 }
